@@ -10,6 +10,11 @@ A library to generate color palette for view, imageview and image from URL.
 [![Mindorks Community](https://img.shields.io/badge/join-community-blue.svg)](https://mindorks.com/join-community)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
+## Features of ViewColorPicker
+* You can generate color palette of Drawable
+* You can generate color palette of View
+* You can generate color palette of Image Url.
+
 ## Getting Started
 
 ##### Step 1. Add the JitPack repository to your Add it in your root `build.gradle` at the end of repositories:
