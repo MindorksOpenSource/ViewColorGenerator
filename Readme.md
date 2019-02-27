@@ -33,14 +33,73 @@ dependencies {
 ```
     val viewcolor = ViewColorGenerator()
 ```
-#### Step 4. To load all (URL/View/Drawable)'s Color Palette
+#### To load all (URL/View/Drawable)'s Color Palette
 ```
 viewcolor.load(TAG**, object : OnImageLoaded {
-                override fun onImageLoaded( vibrantColor: String, vibrantLightColor: String,  vibrantDarkColor: String, 
-                 mutedColor: String, mutedLightColor: String,  mutedDarkColor: String, dominantColor: String) {
-                //your logic here
+            override fun onImageLoaded( vibrantColor: String, vibrantLightColor: String,  vibrantDarkColor: String,  mutedColor: String, mutedLightColor: String,  mutedDarkColor: String, dominantColor: String) {
+               //YOUR LOGIC HERE
             }
 
+        })
+** TAG here is URL/View/Drawable
+```
+
+#### To only get Vibrant Dark Color Shade,
+```
+viewcolor.load(TAG**, object : OnVibrantDarkColorGenerated {
+            override fun onVibrantDarkColorGenerated(titleTextColor: String, bodyColor: String) {
+               //YOUR LOGIC HERE
+            }
+        })
+** TAG here is URL/View/Drawable
+```
+
+#### To only get Vibrant  Color Shade,
+```
+viewcolor.load(TAG**, object : OnVibrantColorGenerated {
+            override fun onVibrantColorGenerated(titleTextColor: String, bodyColor: String) {
+               //YOUR LOGIC HERE
+            }
+        })
+** TAG here is URL/View/Drawable
+```
+
+#### To only get Muted Dark Color Shade,
+```
+viewcolor.load(TAG**, object : OnMutedDarkColorGenerated {
+            override fun onMutedDarkColorGenerated(titleTextColor: String, bodyColor: String) {
+               //YOUR LOGIC HERE
+            }
+        })
+** TAG here is URL/View/Drawable
+```
+
+#### To only get Muted Light Color Shade,
+```
+viewcolor.load(TAG**, object : OnMutedLightColorGenerated {
+            override fun onMutedLightColorGenerated(titleTextColor: String, bodyColor: String) {
+               //YOUR LOGIC HERE
+            }
+        })
+** TAG here is URL/View/Drawable
+```
+
+#### To only get Vibrant Light Color Shade,
+```
+viewcolor.load(TAG**, object : OnVibrantLightColorGenerated {
+            override fun onVibrantLightColorGenerated(titleTextColor: String, bodyColor: String) {
+               //YOUR LOGIC HERE
+            }
+        })
+** TAG here is URL/View/Drawable
+```
+
+#### To only get Muted Color Shade,
+```
+viewcolor.load(TAG**, object : OnMutedColorGenerated {
+            override fun onMutedColorGenerated(titleTextColor: String, bodyColor: String) {
+               //YOUR LOGIC HERE
+            }
         })
 ** TAG here is URL/View/Drawable
 ```
