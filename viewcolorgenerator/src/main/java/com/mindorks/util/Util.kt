@@ -1,10 +1,17 @@
 package com.mindorks.util
 
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.view.View
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
+import android.os.AsyncTask
+import java.io.IOException
+import java.io.InputStream
+import java.net.HttpURLConnection
+import java.net.MalformedURLException
+import java.net.URL
 
 
 object Util {
@@ -68,4 +75,5 @@ object Util {
         val hex = "00" + Integer.toHexString(value)
         return hex.substring(hex.length - 2, hex.length)
     }
+
 }
