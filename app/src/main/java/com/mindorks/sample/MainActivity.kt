@@ -1,19 +1,24 @@
 package com.mindorks.sample
 
+import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import com.mindorks.ViewColorGenerator
 import com.mindorks.`interface`.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-
+    val url = "https://bit.ly/2Eem9EV"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val viewcolor = ViewColorGenerator()
-        viewcolor.load(resources.getDrawable(R.drawable.ic_search), object : OnImageLoaded {
+
+
+        viewcolor.load(url, object : OnImageLoaded {
             override fun onImageLoaded(
                 vibrantColor: String,
                 vibrantLightColor: String,
@@ -27,7 +32,9 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
-        viewcolor.load(resources.getDrawable(R.drawable.ic_search), object : OnVibrantDarkColorGenerated {
+
+
+        viewcolor.load(url, object : OnVibrantDarkColorGenerated {
             override fun onVibrantDarkColorGenerated(titleTextColor: String, bodyColor: String) {
                 background.setBackgroundColor(Color.parseColor(bodyColor))
                 backgroundText.setTextColor(Color.parseColor(titleTextColor))
@@ -36,31 +43,31 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        viewcolor.load((resources.getDrawable(R.drawable.ic_search)), object : OnVibrantColorGenerated {
+        viewcolor.load((url), object : OnVibrantColorGenerated {
             override fun onVibrantColorGenerated(titleTextColor: String, bodyColor: String) {
                 backgroundTwo.setBackgroundColor(Color.parseColor(bodyColor))
                 backgroundTextTwo.setTextColor(Color.parseColor(titleTextColor))
             }
         })
-        viewcolor.load((resources.getDrawable(R.drawable.ic_search)), object : OnMutedDarkColorGenerated {
+        viewcolor.load((url), object : OnMutedDarkColorGenerated {
             override fun onMutedDarkColorGenerated(titleTextColor: String, bodyColor: String) {
                 backgroundThree.setBackgroundColor(Color.parseColor(bodyColor))
                 backgroundTextThree.setTextColor(Color.parseColor(titleTextColor))
             }
         })
-        viewcolor.load((resources.getDrawable(R.drawable.ic_search)), object : OnMutedLightColorGenerated {
+        viewcolor.load((url), object : OnMutedLightColorGenerated {
             override fun onMutedLightColorGenerated(titleTextColor: String, bodyColor: String) {
                 backgroundFour.setBackgroundColor(Color.parseColor(bodyColor))
                 backgroundTextFour.setTextColor(Color.parseColor(titleTextColor))
             }
         })
-        viewcolor.load((resources.getDrawable(R.drawable.ic_search)), object : OnVibrantLightColorGenerated {
+        viewcolor.load((url), object : OnVibrantLightColorGenerated {
             override fun onVibrantLightColorGenerated(titleTextColor: String, bodyColor: String) {
                 backgroundFive.setBackgroundColor(Color.parseColor(bodyColor))
                 backgroundTextFive.setTextColor(Color.parseColor(titleTextColor))
             }
         })
-        viewcolor.load((resources.getDrawable(R.drawable.ic_search)), object : OnMutedColorGenerated {
+        viewcolor.load((url), object : OnMutedColorGenerated {
             override fun onMutedColorGenerated(titleTextColor: String, bodyColor: String) {
                 backgroundSix.setBackgroundColor(Color.parseColor(bodyColor))
                 backgroundTextSix.setTextColor(Color.parseColor(titleTextColor))

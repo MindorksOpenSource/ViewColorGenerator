@@ -5,8 +5,11 @@ import android.graphics.drawable.Drawable
 import android.view.View
 import com.mindorks.util.Util
 import android.support.v7.graphics.Palette
+import android.util.Log
 import com.mindorks.`interface`.*
 import com.mindorks.util.Util.colorToHex
+import com.squareup.picasso.Picasso
+
 
 /**
  * @author Himanshu Singh
@@ -25,6 +28,10 @@ class ViewColorGenerator {
     private var dominantColor = 0
     private val defaultValue = 0x000000
 
+    init {
+
+    }
+
     /**
      * @param srcType is the type of ViewPassed
      * @param interfaceType is the interface which has to be used for color listeners
@@ -34,11 +41,13 @@ class ViewColorGenerator {
         when (srcType) {
             is View -> loadImagePalette(Util.loadViewToBitmap(srcType), interfaceType)
             is Drawable -> loadImagePalette(Util.drawableToBitmap(srcType), interfaceType)
-            else -> throw IllegalArgumentException("The src type should be either be View / Drawable / Url")
-
+            is String -> getBitmap(srcType, interfaceType)
+            else -> throw Exception("The src type should be either be View / Drawable / Url")
         }
 
+
     }
+
 
     /**
      * @param image is the bitmap of the view/drawable
@@ -133,10 +142,22 @@ class ViewColorGenerator {
                         colorToHex(colorRgb)
                     )
                 }
-                else -> throw IllegalArgumentException("The Interface type not available")
+                else -> throw Exception("The Interface type not available")
             }
         }
 
+    }
+
+    private fun getBitmap(url: String, interfaceType: Any) {
+        Picasso.get().load(url).into(object : com.squareup.picasso.Target {
+            override fun onBitmapLoaded(bitmap: Bitmap, from: Picasso.LoadedFrom?) {
+                loadImagePalette(bitmap, interfaceType)
+            }
+
+            override fun onPrepareLoad(placeHolderDrawable: Drawable?) {}
+
+            override fun onBitmapFailed(e: Exception?, errorDrawable: Drawable?) {}
+        })
     }
 
 
