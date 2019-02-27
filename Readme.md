@@ -28,3 +28,18 @@ dependencies {
 	        implementation 'com.github.MindorksOpenSource:ViewColorGenerator:v0.1'
 	}
 ```
+
+##### Step 3. To use this in Android View File,
+```
+    val viewcolor = ViewColorGenerator()
+```
+#### Step 4. To load all (URL/View/Drawable)'s Color Palette
+```
+viewcolor.load(TAG**, object : OnImageLoaded {
+                override fun onImageLoaded( vibrantColor: String, vibrantLightColor: String,  vibrantDarkColor: String,  mutedColor: String, mutedLightColor: String,  mutedDarkColor: String, dominantColor: String) {
+                //your logic here
+            }
+
+        })
+** TAG here is URL/View/Drawable
+```
