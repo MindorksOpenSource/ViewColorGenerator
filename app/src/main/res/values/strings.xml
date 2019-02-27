@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">sample</string>
+    <string name="this_is_muted_dark_text">This is Muted Dark Text</string>
+    <string name="this_is_muted_light_text">This is Muted Light Text</string>
+    <string name="this_is_vibrant_color_text">This is Vibrant Color Text</string>
+    <string name="this_is_muted_color_text">This is Muted Color Text</string>
+    <string name="this_is_vibrant_dark_text">This is Vibrant Dark Text</string>
+</resources>
