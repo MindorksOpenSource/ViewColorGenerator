@@ -42,9 +42,9 @@ class ViewColorGenerator {
             is View -> loadImagePalette(Util.loadViewToBitmap(srcType), interfaceType)
             is Drawable -> loadImagePalette(Util.drawableToBitmap(srcType), interfaceType)
             is String -> getBitmap(srcType, interfaceType)
-            else -> throw IllegalArgumentException("The src type should be either be View / Drawable / Url")
-
+            else -> throw Exception("The src type should be either be View / Drawable / Url")
         }
+
 
     }
 
@@ -142,16 +142,15 @@ class ViewColorGenerator {
                         colorToHex(colorRgb)
                     )
                 }
-                else -> throw IllegalArgumentException("The Interface type not available")
+                else -> throw Exception("The Interface type not available")
             }
         }
 
     }
 
-    fun getBitmap(url: String, interfaceType: Any) {
+    private fun getBitmap(url: String, interfaceType: Any) {
         Picasso.get().load(url).into(object : com.squareup.picasso.Target {
             override fun onBitmapLoaded(bitmap: Bitmap, from: Picasso.LoadedFrom?) {
-                // loaded bitmap is here (bitmap)
                 loadImagePalette(bitmap, interfaceType)
             }
 

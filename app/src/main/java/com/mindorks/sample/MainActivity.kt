@@ -16,6 +16,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val viewcolor = ViewColorGenerator()
+
+
         viewcolor.load(url, object : OnImageLoaded {
             override fun onImageLoaded(
                 vibrantColor: String,
