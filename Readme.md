@@ -115,3 +115,7 @@ viewcolor.load(TAG**, object : OnMutedColorGenerated {
 Contributor
  * [Himanshu Singh](https://github.com/hi-manshu)
  * [Sutirth](https://github.com/sutirth)
+ 
+ ### ViewColorPicker is made on top of,
+ * [Picasso](https://github.com/square/picasso)
+ * [Palette API](https://developer.android.com/training/material/palette-colors)
