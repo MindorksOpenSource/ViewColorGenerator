@@ -114,6 +114,4 @@ viewcolor.load(TAG**, object : OnMutedColorGenerated {
 
 Contributor
  * [Himanshu Singh](https://github.com/hi-manshu)
- 
-Reviewer 
  * [Sutirth](https://github.com/sutirth)
