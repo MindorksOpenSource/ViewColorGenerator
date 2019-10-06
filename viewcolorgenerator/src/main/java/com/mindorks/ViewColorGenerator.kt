@@ -15,7 +15,7 @@ import com.squareup.picasso.Picasso
  * @author Himanshu Singh
  * This library is used to generated Color and Swatches of a given Resource Image
  */
-class ViewColorGenerator constructor(private val context: Context) {
+class ViewColorGenerator {
     /**
      * Declare variables
      */
