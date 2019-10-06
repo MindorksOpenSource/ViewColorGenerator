@@ -1,12 +1,12 @@
 package com.mindorks
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.view.View
-import com.mindorks.util.Util
-import android.support.v7.graphics.Palette
-import android.util.Log
+import androidx.palette.graphics.Palette
 import com.mindorks.`interface`.*
+import com.mindorks.extension.toBitmap
 import com.mindorks.util.Util.colorToHex
 import com.squareup.picasso.Picasso
 
@@ -15,7 +15,7 @@ import com.squareup.picasso.Picasso
  * @author Himanshu Singh
  * This library is used to generated Color and Swatches of a given Resource Image
  */
-class ViewColorGenerator {
+class ViewColorGenerator constructor(private val context: Context) {
     /**
      * Declare variables
      */
@@ -32,6 +32,7 @@ class ViewColorGenerator {
 
     }
 
+
     /**
      * @param srcType is the type of ViewPassed
      * @param interfaceType is the interface which has to be used for color listeners
@@ -39,8 +40,8 @@ class ViewColorGenerator {
      */
     fun load(srcType: Any, interfaceType: Any) {
         when (srcType) {
-            is View -> loadImagePalette(Util.loadViewToBitmap(srcType), interfaceType)
-            is Drawable -> loadImagePalette(Util.drawableToBitmap(srcType), interfaceType)
+            is View -> loadImagePalette(srcType.toBitmap(), interfaceType)
+            is Drawable -> loadImagePalette(srcType.toBitmap(), interfaceType)
             is String -> getBitmap(srcType, interfaceType)
             else -> throw Exception("The src type should be either be View / Drawable / Url")
         }
@@ -67,25 +68,27 @@ class ViewColorGenerator {
                 /**
                  * @OnImageLoaded shares all color of the Image
                  */
-                is OnImageLoaded -> interfaceType.onImageLoaded(
-                    colorToHex(vibrant),
-                    colorToHex(vibrantLight),
-                    colorToHex(vibrantDark),
-                    colorToHex(muted),
-                    colorToHex(mutedLight),
-                    colorToHex(mutedDark),
-                    colorToHex(dominantColor)
-                )
+                is OnImageLoaded ->
+                    interfaceType.onImageLoaded(
+                        colorToHex(vibrant),
+                        colorToHex(vibrantLight),
+                        colorToHex(vibrantDark),
+                        colorToHex(muted),
+                        colorToHex(mutedLight),
+                        colorToHex(mutedDark),
+                        colorToHex(dominantColor)
+                    )
                 /**
                  * @OnVibrantColorGenerated shares vibrant color shade
                  */
                 is OnVibrantColorGenerated -> {
                     val colorTextTitle = palette.vibrantSwatch?.titleTextColor
                     val colorRgb = palette.vibrantSwatch?.rgb
-                    if (colorTextTitle != null && colorRgb != null) interfaceType.onVibrantColorGenerated(
-                        colorToHex(colorTextTitle),
-                        colorToHex(colorRgb)
-                    )
+                    if (colorTextTitle != null && colorRgb != null)
+                        interfaceType.onVibrantColorGenerated(
+                            colorToHex(colorTextTitle),
+                            colorToHex(colorRgb)
+                        )
                 }
                 /**
                  * @OnVibrantDarkColorGenerated shares vibrant dark color shade
@@ -93,10 +96,11 @@ class ViewColorGenerator {
                 is OnVibrantDarkColorGenerated -> {
                     val colorTextTitle = palette.darkVibrantSwatch?.titleTextColor
                     val colorRgb = palette.darkVibrantSwatch?.rgb
-                    if (colorTextTitle != null && colorRgb != null) interfaceType.onVibrantDarkColorGenerated(
-                        colorToHex(colorTextTitle),
-                        colorToHex(colorRgb)
-                    )
+                    if (colorTextTitle != null && colorRgb != null)
+                        interfaceType.onVibrantDarkColorGenerated(
+                            colorToHex(colorTextTitle),
+                            colorToHex(colorRgb)
+                        )
                 }
                 /**
                  * @OnMutedDarkColorGenerated shares Mute dark color shade
@@ -149,6 +153,7 @@ class ViewColorGenerator {
     }
 
     private fun getBitmap(url: String, interfaceType: Any) {
+
         Picasso.get().load(url).into(object : com.squareup.picasso.Target {
             override fun onBitmapLoaded(bitmap: Bitmap, from: Picasso.LoadedFrom?) {
                 loadImagePalette(bitmap, interfaceType)
@@ -158,8 +163,7 @@ class ViewColorGenerator {
 
             override fun onBitmapFailed(e: Exception?, errorDrawable: Drawable?) {}
         })
+
     }
-
-
 }
 

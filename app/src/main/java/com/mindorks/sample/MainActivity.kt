@@ -1,11 +1,8 @@
 package com.mindorks.sample
 
-import android.graphics.Bitmap
 import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.mindorks.ViewColorGenerator
 import com.mindorks.`interface`.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -15,7 +12,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val viewcolor = ViewColorGenerator()
+        val viewcolor = ViewColorGenerator(this)
 
 
         viewcolor.load(url, object : OnImageLoaded {
@@ -38,7 +35,6 @@ class MainActivity : AppCompatActivity() {
             override fun onVibrantDarkColorGenerated(titleTextColor: String, bodyColor: String) {
                 background.setBackgroundColor(Color.parseColor(bodyColor))
                 backgroundText.setTextColor(Color.parseColor(titleTextColor))
-
 
             }
         })
@@ -71,6 +67,7 @@ class MainActivity : AppCompatActivity() {
             override fun onMutedColorGenerated(titleTextColor: String, bodyColor: String) {
                 backgroundSix.setBackgroundColor(Color.parseColor(bodyColor))
                 backgroundTextSix.setTextColor(Color.parseColor(titleTextColor))
+
             }
         })
 
